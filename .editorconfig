@@ -1,0 +1,16 @@
+﻿[*.cs]
+
+# S3903: Types should be defined in named namespaces
+dotnet_diagnostic.S3903.severity = none
+
+# S1104: Fields should not have public accessibility
+dotnet_diagnostic.S1104.severity = none
+
+# S112: General exceptions should never be thrown
+dotnet_diagnostic.S112.severity = none
+
+[FastNoiseLite.cs]
+dotnet_diagnostic.S1905.severity = none
+dotnet_diagnostic.S125.severity = none
+dotnet_diagnostic.S3458.severity = none
+dotnet_diagnostic.IDE0066.severity = none

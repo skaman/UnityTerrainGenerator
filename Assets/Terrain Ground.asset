@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abf488fcaaf0a448a72edfd02f4b69f, type: 3}
+  m_Name: Terrain Ground
+  m_EditorClassIdentifier: 
+  rules:
+  - name: ground_gradient
+    type: 0
+    arguments:
+    - name: x1
+      value: 0
+    - name: x2
+      value: 0
+    - name: y1
+      value: 0
+    - name: y2
+      value: 1
+    - name: z1
+      value: 0
+    - name: z2
+      value: 0
+  - name: ground_shape_fractal
+    type: 2
+    arguments:
+    - name: fractalType
+      value: fbm
+    - name: noiseType
+      value: perlin
+    - name: octaves
+      value: 6
+    - name: frequency
+      value: 2
+  - name: ground_scale
+    type: 3
+    arguments:
+    - name: scale
+      value: 0.5
+    - name: offset
+      value: 0
+    - name: source
+      value: ground_shape_fractal
+  - name: ground_scale_y
+    type: 5
+    arguments:
+    - name: source
+      value: ground_scale
+    - name: scaleX
+      value: 1
+    - name: scaleY
+      value: 0
+    - name: scaleZ
+      value: 1
+  - name: ground_perturb
+    type: 4
+    arguments:
+    - name: source
+      value: ground_gradient
+    - name: translateX
+      value: 0
+    - name: translateY
+      value: ground_scale_y
+    - name: translateZ
+      value: 0
+  - name: ground_overhang_fractal
+    type: 2
+    arguments:
+    - name: fractalType
+      value: fbm
+    - name: noiseType
+      value: perlin
+    - name: octaves
+      value: 6
+    - name: frequency
+      value: 2
+  - name: ground_overhang_scale
+    type: 3
+    arguments:
+    - name: scale
+      value: 0.3
+    - name: offset
+      value: 0
+    - name: source
+      value: ground_overhang_fractal
+  - name: ground_overhang_perturb
+    type: 4
+    arguments:
+    - name: source
+      value: ground_perturb
+    - name: translateX
+      value: ground_overhang_scale
+    - name: translateY
+      value: 0
+    - name: translateZ
+      value: 0
+  - name: ground_select
+    type: 1
+    arguments:
+    - name: control
+      value: ground_overhang_perturb
+    - name: low
+      value: 0
+    - name: high
+      value: 1
+    - name: threshold
+      value: 0.5
+  entryPoint: ground_select
+  previewSize: {x: 512, y: 512}
